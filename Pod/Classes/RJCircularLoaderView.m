@@ -100,7 +100,9 @@
     
     CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:NSStringFromSelector(@selector(path))];
     pathAnimation.fromValue = (__bridge id)(fromPath);
-    pathAnimation.toValue = (id)toPath.CGPath;
+    if (toPath && toPath.CGPath) {
+        pathAnimation.toValue = (id)toPath.CGPath;
+    }
     
     
     groupAnimation.animations = @[lineWidthAnimation, pathAnimation];
